@@ -1,8 +1,22 @@
 def main():
   path_to_file = "books/frankenstein.txt"
-  with open(path_to_file) as f:
+  printReport(path_to_file)
+
+
+def printReport(book_path):
+  with open(book_path) as f:
     file_contents = f.read()
-  print(countLetters(file_contents))
+  word_count = countWords(file_contents)
+  letter_dict = countLetters(file_contents)
+
+  print(f"--- Begin report of {book_path} ---")
+  print(f"{word_count} words found in the document\n")
+
+  for letter in letter_dict:
+    print(f"The {letter} character was found {letter_dict[letter]} times")
+
+  print("--- End report ---")
+
 
 def countWords(text):
   words = text.split()
