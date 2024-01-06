@@ -8,12 +8,17 @@ def printReport(book_path):
     file_contents = f.read()
   word_count = countWords(file_contents)
   letter_dict = countLetters(file_contents)
+  sorted_letter_count = sorted(
+    letter_dict.items(),
+    key = lambda x:x[1],
+    reverse = True
+  )
 
   print(f"--- Begin report of {book_path} ---")
   print(f"{word_count} words found in the document\n")
 
-  for letter in letter_dict:
-    print(f"The {letter} character was found {letter_dict[letter]} times")
+  for letter in sorted_letter_count:
+    print(f"The {letter[0]} character was found {letter[1]} times")
 
   print("--- End report ---")
 
@@ -28,8 +33,9 @@ def countLetters(text):
   lower_text = text.lower()
 
   # Remove special characters
-  for ch in ['\\','`','*','_','{','}','[',']','(',')','>','#','+',
-             '-','.','!','$','\'', '/', '%', '@', ':', '?', ',', '"', ';', ' ']:
+  for ch in ['\\','`','*','_','{','}','[',']',
+             '(',')','>','#','+','-','.','!','$',
+             '\'', '/', '%', '@', ':', '?', ',', '"', ';', ' ']:
         if ch in lower_text:
             lower_text = lower_text.replace(ch, "")
   letters_numbers_only = lower_text.replace("\n", "")
