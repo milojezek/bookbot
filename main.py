@@ -8,6 +8,8 @@ def printReport(book_path):
     file_contents = f.read()
   word_count = countWords(file_contents)
   letter_dict = countLetters(file_contents)
+
+  # Sort letter dictionary by value
   sorted_letter_count = sorted(
     letter_dict.items(),
     key = lambda x:x[1],
